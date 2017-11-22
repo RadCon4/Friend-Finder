@@ -1,43 +1,48 @@
-var path = require('path');
-
-var friends = require('../data/friends.js');
+var friendData = require('../data/friends.js');
 
 module.exports = function(app) {
 
-	app.get('/api/friends', function(req, res) {
-		res.json(friends);
-	});
+    app.get('/api/friends', function(req, res) {
+        res.json(friendData);
+    });
 
-	app.post('/api/friends', function(req, res) {
-	
-		var userInput = req.body;
-	
-		var userResponses = userData.scores;
-			
-		var matchName = '';
-		var matchImage = '';
-		var totalDifference = 10000; 
+    app.post('/api/friends', function(req, res) {
+         var thisUser = req.body;
+        var differences = [];
 
-		for (var i = 0; i < friends.length; i++) {
-		
-			var diff = 0;
-			for (var j = 0; j < userResponses.length; j++) {
-				diff += Math.abs(friends[i].scores[j] - userResponses[j]);
-			}
-		
-			if (diff < totalDifference) {
-				// console.log('Closest match found = ' + diff);
-				// console.log('Friend name = ' + friends[i].name);
-				// console.log('Friend image = ' + friends[i].photo);
+        if (friendData.length > 1) {
+      
+            friendData.forEach(function(user) {
+                var totalDifference = 0;
 
-				totalDifference = diff;
-				matchName = friends[i].name;
-				matchImage = friends[i].photo;
-			}
-		}
+                for (var i = 0; i < thisUser.answers.length; i++) {
+                    var otherAnswer = user.answers[i];
+                    var thisAnswer = thisUser.answers[i];
+                    var difference = +otherAnswer - +thisAnswer;
+                    totalDifference += Math.abs(difference);
+                }
 
-		friends.push(userInput);
+                differences.push(totalDifference);
+            });
 
-		res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
-	});
+    
+            var minimumDifference = Math.min.apply(null, differences);
+
+
+            var bestMatches = [];
+
+            for (var i = 0; i < differences.length; i++) {
+                if (differences[i] === minimumDifference) {
+                    bestMatches.push(friendData[i]);
+                }
+            }
+
+            res.json(bestMatches);
+        } else {
+            res.json(friendData);
+        }
+
+        friendData.push(thisUser);
+
+    });
 };
