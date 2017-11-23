@@ -1,4 +1,3 @@
-// Data structure that will store the friends data
 module.exports = [
 	{
 		"name": 'Rick Sanchez',

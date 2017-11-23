@@ -7,42 +7,40 @@ module.exports = function(app) {
     });
 
     app.post('/api/friends', function(req, res) {
-         var thisUser = req.body;
-        var differences = [];
+       var thisUser = req.body;
+       var differences = [];
 
-        if (friendData.length > 1) {
-      
-            friendData.forEach(function(user) {
-                var totalDifference = 0;
+       if (friendData.length > 1) {
 
-                for (var i = 0; i < thisUser.answers.length; i++) {
-                    var otherAnswer = user.answers[i];
-                    var thisAnswer = thisUser.answers[i];
-                    var difference = +otherAnswer - +thisAnswer;
-                    totalDifference += Math.abs(difference);
-                }
+        friendData.forEach(function(user) {
+            var totalDifference = 0;
 
-                differences.push(totalDifference);
-            });
-
-    
-            var minimumDifference = Math.min.apply(null, differences);
-
-
-            var bestMatches = [];
-
-            for (var i = 0; i < differences.length; i++) {
-                if (differences[i] === minimumDifference) {
-                    bestMatches.push(friendData[i]);
-                }
+            for (var i = 0; i < thisUser.answers.length; i++) {
+                var otherAnswer = user.answers[i];
+                var thisAnswer = thisUser.answers[i];
+                var difference = +otherAnswer - +thisAnswer;
+                totalDifference += Math.abs(difference);
             }
 
-            res.json(bestMatches);
-        } else {
-            res.json(friendData);
+            differences.push(totalDifference);
+        });
+
+        var minimumDifference = Math.min.apply(null, differences);
+
+        var bestMatches = [];
+
+        for (var i = 0; i < differences.length; i++) {
+            if (differences[i] === minimumDifference) {
+                bestMatches.push(friendData[i]);
+            }
         }
 
-        friendData.push(thisUser);
+        res.json(bestMatches);
+    } else {
+        res.json(friendData);
+    }
 
-    });
+    friendData.push(thisUser);
+
+});
 };
