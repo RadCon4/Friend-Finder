@@ -1,5 +1,5 @@
-# Week-13---Friend-Finder
-Week 13 homework Assignment
+Friend-Finder
+
 
 
 Heroku Deploy Page:  https://friend-finder-ach.herokuapp.com/
