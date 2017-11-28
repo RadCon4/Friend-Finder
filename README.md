@@ -5,6 +5,8 @@
 
 This is a compatibility-based "FriendFinder" application -- basically a dating app. This full-stack site will take in results from your survey, then compare your answers with those from other users. The app will then display the name and picture of the user with the best overall match.
 
+Heroku Deploy Page:  https://friend-finder-ach.herokuapp.com/
+
 ### Folder Structure
 ***
 
@@ -26,8 +28,6 @@ This is a compatibility-based "FriendFinder" application -- basically a dating a
            
 ### Notes
 ***
-
-Heroku Deploy Page:  https://friend-finder-ach.herokuapp.com/
 
 Conrad Harrison © 2017. 
 
