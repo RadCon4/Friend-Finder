@@ -1,19 +1,34 @@
-Friend-Finder
+## Friend-Finder
 
-In this activity, you'll build a compatibility-based "FriendFinder" application -- basically a dating app. This full-stack site will take in results from your users' surveys, then compare their answers with those from other users. The app will then display the name and picture of the user with the best overall match.
+### Synopsis
+***
 
-You will use Express to handle routing. Make sure you deploy your app to Heroku so other users can fill it out.
-Your server.js file should require the basic npm packages we've used in class: express, body-parser and path.
+This is a compatibility-based "FriendFinder" application -- basically a dating app. This full-stack site will take in results from your survey, then compare your answers with those from other users. The app will then display the name and picture of the user with the best overall match.
 
-Your htmlRoutes.js file should include two routes:
+### Folder Structure
+***
 
-A GET Route to /survey which should display the survey page.
-A default, catch-all route that leads to home.html which displays the home page.
-Your apiRoutes.js file should contain two routes:
-
-A GET route with the url /api/friends. This will be used to display a JSON of all possible friends.
-A POST routes /api/friends. This will be used to handle incoming survey results. This route will also be used to handle the compatibility logic.
-You should save your application's data inside of app/data/friends.js as an array of objects. Each of these objects should roughly follow the format below.
-
+ * server.js
+ * package.json
+ * app
+     * data
+         * friends.js
+     * public
+         * home.html
+         * survey.html
+         * CSS
+             * styles.css
+         * javascript
+             * survey.js
+     * routing
+         * apiRoutes.js
+         * htmlRoutes.js
+           
+### Notes
+***
 
 Heroku Deploy Page:  https://friend-finder-ach.herokuapp.com/
+
+Conrad Harrison © 2017. 
+
+
